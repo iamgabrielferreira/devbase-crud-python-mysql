@@ -1,39 +1,101 @@
-# DevBase - Expotech
+# 🗃️ DevBase | Rede Social em Python e MySQL
 
-DevBase é um sistema backend desenvolvido em Python, executado via terminal (CLI), voltado para gestão de usuários e interações dentro do sistema. O projeto permite operações como cadastro, atualização e remoção de usuários, além de funcionalidades interativas como curtidas e comentários.
+Sistema de terminal que simula uma rede social simples, desenvolvido em Python com integração ao MySQL. O projeto foi construído para a Expotech, aplicando desde a modelagem do banco de dados até a lógica de negócio da aplicação — cobrindo cadastro de usuários, publicação de conteúdo, interações sociais (curtidas e comentários) e funcionalidades de sistema como feedback e notificações.
 
-O sistema utiliza MySQL para armazenamento de dados e conta com autenticação de usuários com senha, garantindo segurança no gerenciamento das informações.
+## 🎯 Objetivo
 
-O DevBase foi desenvolvido como base de estudo e prática de lógica backend, organização de dados e estruturação de sistemas reais. Atualmente é executado localmente via terminal, mas possui estrutura pensada para futura integração com APIs e aplicações web.
+Praticar o desenvolvimento de um sistema completo (CRUD + regras de negócio) integrado a um banco de dados relacional, aplicando conceitos de estruturação de projeto backend, organização de código em funções e manipulação de dados via SQL.
 
----
+## ⚙️ Funcionalidades
 
-## Tecnologias utilizadas
+**Usuário**
+- Criar conta
+- Login (autenticação por email e senha)
+- Listar usuários
+- Buscar usuário por ID
+- Atualizar dados do usuário
+- Deletar usuário (remove também seus tópicos, comentários, perfil, feedbacks e notificações)
 
-- Python
-- MySQL
-- Terminal (CLI)
-- Werkzeug Security (hash de senhas)
+**Conteúdo**
+- Criar tópico
+- Listar tópicos
+- Comentar em um tópico
 
----
+**Interações**
+- Curtir tópico ou comentário
 
-## Funcionalidades
+**Perfil**
+- Criar perfil (bio, nível de experiência e área de interesse)
 
-- Cadastro de usuários  
-- Atualização de dados de usuários  
-- Remoção de usuários  
-- Sistema de curtidas  
-- Sistema de comentários  
-- Autenticação segura  
+**Sistema**
+- Enviar feedback
+- Criar notificação
+- Registrar acesso diário (sistema de pontuação)
+- Gerar recuperação de senha (via token único)
 
----
+## 🗂️ Estrutura do banco de dados
 
-## Objetivo
+| Tabela | Principais campos |
+|---|---|
+| `tbl_usuario` | nome_usuario, email_usuario, senha_usuario, sexo_usuario |
+| `tbl_topico` | titulo_topico, tipo_topico, id_usuario |
+| `tbl_comentario` | texto_comentario, id_usuario, id_topico |
+| `tbl_curtida` | id_usuario, id_topico, id_comentario |
+| `tbl_perfil` | bio_perfil, nivel_perfil, area_interesse_perfil, id_usuario |
+| `tbl_feedback` | msg_feedback, id_usuario |
+| `tbl_notificacao` | msg_notificacao, id_usuario |
+| `tbl_acesso_diario` | pontuacao_dia_acesso_diario, id_usuario |
+| `tbl_projeto` | titulo_projeto, descricao_projeto, link_projeto, id_usuario |
+| `tbl_recuperacao_senha` | token_recuperacao_senha, id_usuario |
 
-Construir uma base sólida de backend para aprendizado e evolução em desenvolvimento de sistemas, focando em lógica, manipulação de dados e operações CRUD.
+## 🛠️ Tecnologias
 
----
+- **Python** — lógica da aplicação e regras de negócio
+- **MySQL** — armazenamento e persistência dos dados
+- **mysql-connector-python** — conexão entre a aplicação Python e o banco MySQL
+- **Git & GitHub** — versionamento de código
 
-## Status do projeto
+## ⚙️ Como rodar
 
-Em desenvolvimento (uso via terminal / CLI)
+```bash
+# Clone o repositório
+git clone https://github.com/iamgabrielferreira/devbase-crud-python-mysql.git
+
+# Entre na pasta do projeto
+cd devbase-crud-python-mysql
+
+# Instale a dependência
+pip install mysql-connector-python
+
+# Configure a conexão com o banco em conexao.py
+# (host, usuário, senha, nome do banco e porta)
+
+# Crie o banco de dados "devbase_expotech" no MySQL
+# e as tabelas correspondentes (ver seção "Estrutura do banco de dados")
+
+# Execute a aplicação
+python main.py
+```
+
+> ⚠️ **Configuração sensível:** atualmente, as credenciais de conexão com o banco estão escritas diretamente no arquivo `conexao.py`. Antes de deixar o repositório público, mova host, usuário, senha e nome do banco para variáveis de ambiente (arquivo `.env` + biblioteca `python-dotenv`) — isso evita expor credenciais no código-fonte.
+
+## 📸 Demonstração
+
+`[Adicionar aqui prints do terminal mostrando o menu principal e pelo menos um fluxo completo, como criar usuário → login → criar tópico → comentar]`
+
+## 📚 O que aprendi
+
+Este projeto me permitiu praticar a modelagem de um banco de dados relacional com múltiplas entidades relacionadas entre si (usuários, tópicos, comentários, curtidas, perfis), além de estruturar a exclusão em cascata manualmente e organizar um sistema de menu para navegação entre as funcionalidades — reforçando lógica de programação, manipulação de dados via SQL e organização de código em Python.
+
+## 🔮 Próximos passos
+
+- [ ] Mover credenciais do banco para variáveis de ambiente
+- [ ] Criar arquivo `requirements.txt`
+- [ ] Adicionar validações de entrada (ex: impedir email duplicado, senha vazia)
+- [ ] Migrar a lógica para uma API REST (ex: com Flask ou FastAPI)
+- [ ] Adicionar testes automatizados
+
+## 🔗 Contato
+
+- [LinkedIn](https://www.linkedin.com/in/gabrielferreiradias-ti/)
+- [GitHub](https://github.com/iamgabrielferreira)
