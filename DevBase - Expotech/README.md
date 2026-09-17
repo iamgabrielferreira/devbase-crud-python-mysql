@@ -77,12 +77,6 @@ pip install mysql-connector-python
 python main.py
 ```
 
-> ⚠️ **Configuração sensível:** atualmente, as credenciais de conexão com o banco estão escritas diretamente no arquivo `conexao.py`. Antes de deixar o repositório público, mova host, usuário, senha e nome do banco para variáveis de ambiente (arquivo `.env` + biblioteca `python-dotenv`) — isso evita expor credenciais no código-fonte.
-
-## 📸 Demonstração
-
-`[Adicionar aqui prints do terminal mostrando o menu principal e pelo menos um fluxo completo, como criar usuário → login → criar tópico → comentar]`
-
 ## 📚 O que aprendi
 
 Este projeto me permitiu praticar a modelagem de um banco de dados relacional com múltiplas entidades relacionadas entre si (usuários, tópicos, comentários, curtidas, perfis), além de estruturar a exclusão em cascata manualmente e organizar um sistema de menu para navegação entre as funcionalidades — reforçando lógica de programação, manipulação de dados via SQL e organização de código em Python.
